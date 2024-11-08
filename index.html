@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precies Vier - Melle 30</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="explanation-container">
+            <div id="explanation"></div>
+        </div>
+        <div id="word-container"></div>
+        
+        <button id="check-button" class="hidden">✓</button> <!-- New circular button -->
+    </div>
+    
+    <div id="attempts-wrapper">
+        <p id="feedback"></p>
+        <p>Pogingen resterend</p>
+        <div id="attempts">
+            <!-- Black rectangles for attempts will be generated here by JavaScript -->
+        </div>
+        <div id="button-container">
+            <!-- <button id="reset-button">🔄</button> -->
+            <button id="solution-button">💡</button>
+            <button id="shuffle-button">🔀</button>
+            <button id="clear-selection-button">🗑️</button>
+        </div>
+        <div id="puzzle-selector-container">
+            <label for="puzzle-selector">Kies een puzzel:</label>
+            <select id="puzzle-selector">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

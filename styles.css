@@ -1,0 +1,233 @@
+/* Center the entire game area, including attempts */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 0;
+}
+
+#game-container {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 30px;
+    margin-bottom: -35px; /* Space between grid and attempts */
+}
+
+/* Colors for tiles */
+.word.yellow { background-color: #FFF2CC; }
+.word.blue { background-color: #D9EAFB; }
+.word.red { background-color: #FAD4D4; }
+.word.purple { background-color: #E6DAF3; }
+
+/* Colors for explanations */
+.explanation.yellow { color: #B59A41; }
+.explanation.blue { color: #4A90E2; }
+.explanation.red { color: #D9534F; }
+.explanation.purple { color: #7B68EE; }
+
+/* Word container */
+#word-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border: 2px solid #888;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px; /* Fixed width */
+    height: 80px; /* Fixed height */
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+    background-color: #f0f0e8;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center; /* Center text horizontally */
+    padding: 5px; /* Add padding to avoid text touching the edges */
+    overflow-wrap: break-word; /* Allows breaking long words if necessary */
+    word-wrap: break-word; /* Ensures compatibility with older browsers */
+    white-space: normal; /* Allows text to wrap onto multiple lines */
+}
+
+.word.selected {
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.selected {
+    background-color: #add8e6;
+}
+
+/* Attempts wrapper to center-align below the grid */
+#attempts-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#attempts-container p {
+    margin-bottom: 5px; /* Slight spacing between text and attempts rectangles */
+}
+
+#attempts {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 25px; /* Space between attempts and reset button */
+}
+
+.attempt {
+    width: 20px;
+    height: 10px;
+    background-color: black;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.attempt.lost {
+    background-color: lightgray; /* Light gray for lost attempts */
+}
+
+#reset-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Styles for the circular check button */
+#check-button {
+    position: absolute;
+    bottom: 20px; /* Slightly overlaps with the grid */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show the button when visible */
+#check-button.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hidden button style */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 0px; /* Space between buttons and attempts indicator */
+    margin-bottom: 25px; /* Space between buttons and bottom of the page */
+}
+
+#button-container button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+#button-container button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+#explanation-container {
+    width: fit-content; /* Match the width to the grid */
+    max-width: 100%; /* Prevent overflow on smaller screens */
+    height: 60px;
+    padding: 5px;
+    text-align: left;
+    margin-top: 5px; /* Space below the explanation container */
+    margin-bottom: 20px; /* Space below the explanation container */
+}
+
+#explanation {
+    font-weight: bold;
+    text-align: center;
+}
+
+#feedback {
+    height: 20px; /* Fixed height for feedback */
+    text-align: center;
+    margin-top: 10px; /* Space between grid and feedback */
+    margin-bottom: -2.5px; /* Space between grid and attemps */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: grey; /* Set feedback text color to grey */
+}
+
+#solution-button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background-color: #f0f0f0; /* Default background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* Make it look clickable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+#solution-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#solution-button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+#puzzle-selector-container {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#puzzle-selector {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+}
