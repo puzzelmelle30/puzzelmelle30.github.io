@@ -1,5 +1,6 @@
 /* Center the entire game area, including attempts */
 body {
+    font-size: 16px; /* Base font size */
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column; /* Stack elements vertically */
@@ -10,11 +11,85 @@ body {
     margin: 0;
 }
 
+/* Ensure #game-container uses a vertical layout to prevent overlap */
 #game-container {
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column; /* Stack explanations and grid vertically */
+    align-items: center;
     padding-bottom: 30px;
-    margin-bottom: -35px; /* Space between grid and attempts */
+    margin-bottom: -35px;
+}
+
+/* Explanation container with column layout and top alignment */
+#explanation-container {
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    min-height: 60px; /* Minimum height to avoid crowding */
+    display: flex;
+    flex-direction: column; /* Stack explanations vertically */
+    align-items: center; /* Center explanations horizontally */
+    justify-content: flex-start; /* Align text to the top */
+    gap: 5px; /* Adds space between explanations */
+}
+
+/* Individual explanation styling with reduced line spacing */
+.explanation {
+    font-weight: bold;
+    font-size: 13px; /* Original font size */
+    line-height: 1.1; /* Reduced line spacing for compact text */
+    margin: 0; /* Remove side margins for a clean, centered look */
+}
+
+/* Word container */
+#word-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(80px, 120px));
+    gap: 5px;
+    padding: 10px;
+    border: 3px solid #888;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: clamp(320px, 90vw, 500px);
+    margin: 0 auto;
+}
+
+/* Word tiles with font size in rem for proportional scaling */
+.word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    font-weight: bold;
+    font-size: 13px; /* Original font size */
+    color: #333;
+    background-color: #f0f0e8;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    padding: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    box-sizing: border-box;
+}
+
+.word.selected {
+    background-color: #333;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.selected {
+    background-color: #add8e6;
 }
 
 /* Colors for tiles */
@@ -29,51 +104,6 @@ body {
 .explanation.red { color: #D9534F; }
 .explanation.purple { color: #7B68EE; }
 
-/* Word container */
-#word-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    padding: 10px;
-    border: 2px solid #888;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    margin: 0 auto;
-}
-
-.word {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 125px; /* Fixed width */
-    height: 80px; /* Fixed height */
-    font-weight: bold;
-    font-size: 13px;
-    color: #333;
-    background-color: #f0f0e8;
-    border-radius: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-    text-align: center; /* Center text horizontally */
-    padding: 5px; /* Add padding to avoid text touching the edges */
-    overflow-wrap: break-word; /* Allows breaking long words if necessary */
-    word-wrap: break-word; /* Ensures compatibility with older browsers */
-    white-space: normal; /* Allows text to wrap onto multiple lines */
-}
-
-.word.selected {
-    background-color: #333; /* Dark background */
-    color: white; /* White text */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-}
-
-.selected {
-    background-color: #add8e6;
-}
-
 /* Attempts wrapper to center-align below the grid */
 #attempts-wrapper {
     display: flex;
@@ -83,44 +113,44 @@ body {
 }
 
 #attempts-container p {
-    margin-bottom: 5px; /* Slight spacing between text and attempts rectangles */
+    font-size: 13px; /* Original font size */
+    margin-bottom: 5px;
 }
 
 #attempts {
     display: flex;
     gap: 5px;
     justify-content: center;
-    margin-bottom: 25px; /* Space between attempts and reset button */
+    margin-bottom: 25px;
 }
 
 .attempt {
     width: 20px;
     height: 10px;
     background-color: black;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px;
 }
 
 .attempt.lost {
-    background-color: lightgray; /* Light gray for lost attempts */
+    background-color: lightgray;
 }
 
 #reset-button {
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 13px; /* Original font size */
     cursor: pointer;
 }
 
-/* Styles for the circular check button */
 #check-button {
     position: absolute;
-    bottom: 20px; /* Slightly overlaps with the grid */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 50px;
     height: 50px;
-    background-color: #007bff; /* Blue color */
+    background-color: #007bff;
     color: white;
-    font-size: 24px;
+    font-size: 20px; /* Original font size */
     border: none;
     border-radius: 50%;
     display: flex;
@@ -133,13 +163,11 @@ body {
     visibility: hidden;
 }
 
-/* Show the button when visible */
 #check-button.visible {
     opacity: 1;
     visibility: visible;
 }
 
-/* Hidden button style */
 .hidden {
     opacity: 0;
     visibility: hidden;
@@ -147,15 +175,15 @@ body {
 
 #button-container {
     display: flex;
-    gap: 10px; /* Space between buttons */
-    margin-top: 0px; /* Space between buttons and attempts indicator */
-    margin-bottom: 25px; /* Space between buttons and bottom of the page */
+    gap: 10px;
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
 #button-container button {
     width: 50px;
     height: 50px;
-    font-size: 24px;
+    font-size: 20px; /* Original font size */
     background-color: #f0f0f0;
     border: none;
     border-radius: 5px;
@@ -168,43 +196,29 @@ body {
 }
 
 #button-container button:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
-}
-
-#explanation-container {
-    width: fit-content; /* Match the width to the grid */
-    max-width: 100%; /* Prevent overflow on smaller screens */
-    height: 60px;
-    padding: 5px;
-    text-align: left;
-    margin-top: 5px; /* Space below the explanation container */
-    margin-bottom: 20px; /* Space below the explanation container */
-}
-
-#explanation {
-    font-weight: bold;
-    text-align: center;
+    background-color: #e0e0e0;
 }
 
 #feedback {
-    height: 20px; /* Fixed height for feedback */
+    font-size: 13px; /* Original font size */
+    height: 20px;
     text-align: center;
-    margin-top: 10px; /* Space between grid and feedback */
-    margin-bottom: -2.5px; /* Space between grid and attemps */
+    margin-top: 10px;
+    margin-bottom: -2.5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: grey; /* Set feedback text color to grey */
+    color: grey;
 }
 
 #solution-button {
     width: 50px;
     height: 50px;
-    font-size: 24px;
-    background-color: #f0f0f0; /* Default background color */
+    font-size: 20px; /* Original font size */
+    background-color: #f0f0f0;
     border: none;
     border-radius: 5px;
-    cursor: pointer; /* Make it look clickable */
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -218,7 +232,7 @@ body {
 }
 
 #solution-button:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
+    background-color: #e0e0e0;
 }
 
 #puzzle-selector-container {
@@ -227,7 +241,21 @@ body {
 }
 
 #puzzle-selector {
-    font-size: 16px;
+    font-size: 13px; /* Original font size */
     padding: 5px;
     border-radius: 5px;
+}
+
+/* Responsive font and element size adjustments for smaller screens */
+@media (max-width: 550px) {
+    /* Adjust base font size for smaller screens */
+    body {
+        font-size: calc(2.9vw); /* Dynamically adjust font size */
+    }
+    .explanation, #feedback, #puzzle-selector {
+        font-size: calc(2.35vw); /* Adjust font size for these elements */
+    }
+    .word, #attempts-container p {
+        font-size: calc(2.35vw); /* Adjust font size in .word and attempts text */
+    }
 }

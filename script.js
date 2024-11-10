@@ -61,6 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
         currentColorIndex = 0;
         Object.keys(groupColorMap).forEach(key => delete groupColorMap[key]);
     
+        // Reset explanation container and displayed explanations
+        explanationContainer.innerHTML = ""; // Clear previous explanations in the container
+        displayedExplanations.length = 0; // Reset the displayed explanations array
+    
         // Update `correctGroups` and `explanations` based on the selected puzzle
         correctGroups.length = 0; // Clear existing groups
         explanations.length = 0; // Clear existing explanations
@@ -90,13 +94,12 @@ document.addEventListener("DOMContentLoaded", function() {
         gameOver = false;
         feedback.textContent = "";
         updateAttemptsDisplay();
-        explanationContainer.innerHTML = ""; // Clear previous explanations
     
         // Disable the Solutions button at the start
         solutionButton.disabled = true;
         solutionButton.classList.add("disabled");
     }
-
+    
     const groupColors = ['yellow', 'blue', 'red', 'purple'];
     let currentColorIndex = 0;
 
@@ -184,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         } else {
             const incorrectCount = 4 - maxMatches;
-            feedback.textContent = incorrectCount === 1 ? "Helaas, er klopt er eentje niet" : "Het klopt niet";
+            feedback.textContent = incorrectCount === 1 ? "Er klopt er eentje niet" : "Het klopt niet";
     
             attemptsLeft--;
             updateAttemptsDisplay();
